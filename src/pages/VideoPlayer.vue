@@ -1,8 +1,13 @@
 <template>
-	<Header :addBtnHandler="addVideo" :backToHome="returnHome" />
+	<Navbar :addBtnHandler="addVideo" :backToHome="returnHome" />
+	<Tags />
 	<section class="pt-6 pb-20 min-h-[calc(100vh_-_157px)]" v-if="loadDtl == 'home'">
 		<div class="grid grid-cols-12 gap-4 max-w-7xl mx-auto px-5 lg:px-0 min-h-[300px]">
-			<SingleVideo v-for="video in videos" :key="video.id" :compNameHandler="getCompName" :video="video" />
+			<SingleVideo
+				v-for="videoItem in videos"
+				:key="videoItem.id"
+				:compNameHandler="getCompName"
+				:video="videoItem" />
 		</div>
 	</section>
 	<Player v-if="loadDtl == 'player'" />
@@ -11,11 +16,12 @@
 </template>
 
 <script>
-	import AddVideo from '../components/AddVideo.vue';
-	import Footer from '../components/Footer.vue';
-	import Header from '../components/Header.vue';
 	import Player from '../components/Player.vue';
-	import SingleVideo from '../components/SingleVideo.vue';
+	import AddVideo from '../components/addvideo/AddVideo.vue';
+	import Footer from '../components/footer/Footer.vue';
+	import Navbar from '../components/navbar/Navbar.vue';
+	import Tags from '../components/tags/Tags.vue';
+	import SingleVideo from '../components/videos/SingleVideo.vue';
 	import { getVideos } from '../service/videoApi.js';
 
 	export default {
@@ -23,9 +29,10 @@
 		components: {
 			AddVideo,
 			Footer,
-			Header,
+			Navbar,
 			Player,
-			SingleVideo
+			SingleVideo,
+			Tags
 		},
 		data() {
 			return {
@@ -41,7 +48,6 @@
 		methods: {
 			async getVideoList() {
 				const res = await getVideos();
-				console.log(res);
 				this.videos = res;
 			},
 			addVideo(val) {

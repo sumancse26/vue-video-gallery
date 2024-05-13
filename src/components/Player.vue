@@ -11,33 +11,11 @@
 						title="Some video title"
 						frameborder=""
 						allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-						allowfullscreen></iframe>
+						allowfullscreen>
+					</iframe>
 
 					<!-- video description -->
-					<div>
-						<h1 class="text-lg font-semibold tracking-tight text-slate-800">Some video title</h1>
-						<div class="pb-4 flex items-center space-between border-b">
-							<h2 class="text-sm leading-[1.7142857] text-slate-600 w-full">Uploaded on 23 Nov 2022</h2>
-
-							<!-- delete/edit -->
-							<div class="flex gap-10 w-48">
-								<div class="flex gap-1">
-									<div class="shrink-0">
-										<img class="w-5 block" src="../assets/edit.svg" alt="Edit" />
-									</div>
-									<a class="text-sm leading-[1.7142857] text-slate-600"> Edit </a>
-								</div>
-								<div class="flex gap-1">
-									<div class="shrink-0">
-										<img class="w-5 block" src="../assets/delete.svg" alt="Delete" />
-									</div>
-									<div class="text-sm leading-[1.7142857] text-slate-600 cursor-pointer">Delete</div>
-								</div>
-							</div>
-						</div>
-
-						<div class="mt-4 text-sm text-[#334155] dark:text-slate-400">Some video description here</div>
-					</div>
+					<Description />
 				</div>
 				<RelatedVideo />
 			</div>
@@ -46,11 +24,13 @@
 </template>
 
 <script>
-	import RelatedVideo from './RelatedVideo.vue';
+	import Description from './description/Description.vue';
+	import RelatedVideo from './videos/RelatedVideo.vue';
 	export default {
 		name: 'Player',
 		components: {
-			RelatedVideo
+			RelatedVideo,
+			Description
 		}
 	};
 </script>
