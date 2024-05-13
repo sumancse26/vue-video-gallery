@@ -1,6 +1,3 @@
-<script setup>
-	import RelatedVideo from './RelatedVideo.vue';
-</script>
 <template>
 	<section class="pt-6 pb-20 min-h-[calc(100vh_-_157px)]">
 		<div class="mx-auto max-w-7xl px-2 pb-20 min-h-[400px]">
@@ -47,3 +44,13 @@
 		</div>
 	</section>
 </template>
+
+<script>
+	import RelatedVideo from './RelatedVideo.vue';
+	export default {
+		name: 'Player',
+		components: {
+			RelatedVideo
+		}
+	};
+</script>

@@ -1,5 +1,3 @@
-<script setup></script>
-
 <template>
 	<div class="col-span-full lg:col-auto max-h-[570px] overflow-y-auto">
 		<div class="w-full flex flex-row gap-2 mb-4">
@@ -23,3 +21,5 @@
 		</div>
 	</div>
 </template>
+
+<script></script>

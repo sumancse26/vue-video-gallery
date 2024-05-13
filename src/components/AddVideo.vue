@@ -1,5 +1,3 @@
-<script setup></script>
-
 <template>
 	<section class="pt-6 pb-20 min-h-[calc(100vh_-_157px)]">
 		<div class="max-w-7xl mx-auto px-5 lg:px-0">
@@ -124,3 +122,9 @@
 		</div>
 	</section>
 </template>
+
+<script>
+	export default {
+		name: 'Add video'
+	};
+</script>
