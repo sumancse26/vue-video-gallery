@@ -7,7 +7,13 @@
 			<div class="flex items-center justify-between gap-5">
 				<div
 					className="border border-slate-200 flex items-center bg-white h-10 px-5 rounded-lg text-sm ring-emerald-200">
-					<SearchBar />
+					<input
+						className="outline-none border-none mr-2"
+						type="search"
+						name="search"
+						placeholder="Search"
+						v-model.trim="searchKey"
+						@change.enter="searchHandler" />
 					<img className="inline h-4 cursor-pointer" src="../../assets/search.svg" alt="Search" />
 				</div>
 				<a
@@ -21,18 +27,24 @@
 </template>
 
 <script>
-	import SearchBar from './Searchbar.vue';
 	export default {
 		name: 'Navbar',
 		props: {
 			addBtnHandler: Function,
-			backToHome: Function
+			backToHome: Function,
+			getSearchKey: Function
 		},
-		components: { SearchBar },
 		data() {
 			return {
-				//
+				searchKey: ''
 			};
+		},
+
+		methods: {
+			searchHandler() {
+				alert(1);
+				this.getSearchKey(this.searchKey);
+			}
 		}
 	};
 </script>

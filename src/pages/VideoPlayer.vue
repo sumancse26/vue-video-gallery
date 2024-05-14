@@ -1,6 +1,6 @@
 <template>
-	<Navbar :addBtnHandler="addVideo" :backToHome="returnHome" />
-	<Tags />
+	<Navbar :addBtnHandler="addVideo" :backToHome="returnHome" :getSearchKey="(item) => (search = item)" />
+	<Tags :getCheckedTag="(item) => (tags = item)" />
 	<section class="pt-6 pb-20 min-h-[calc(100vh_-_157px)]" v-if="loadDtl == 'home'">
 		<div class="grid grid-cols-12 gap-4 max-w-7xl mx-auto px-5 lg:px-0 min-h-[300px]">
 			<SingleVideo
@@ -37,7 +37,9 @@
 		data() {
 			return {
 				loadDtl: 'home',
-				videos: []
+				videos: [],
+				tags: [],
+				search: ''
 			};
 		},
 
@@ -47,8 +49,13 @@
 
 		methods: {
 			async getVideoList() {
-				const res = await getVideos();
-				this.videos = res;
+				try {
+					const res = await getVideos(this.search, this.tags);
+					this.videos = res;
+				} catch (e) {
+					this.videos = [];
+					return e;
+				}
 			},
 			addVideo(val) {
 				this.loadDtl = val;

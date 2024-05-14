@@ -39,7 +39,7 @@
 		},
 		data() {
 			return {
-				videoInfo: this.video
+				videoInfo: this.video || {}
 			};
 		}
 	};
