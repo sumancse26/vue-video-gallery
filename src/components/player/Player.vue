@@ -7,15 +7,15 @@
 					<iframe
 						width="100%"
 						class="aspect-video"
-						src="https://www.youtube-nocookie.com/embed/6O4s7v28nlw"
-						title="Some video title"
+						:src="video.link"
+						:title="video.title"
 						frameborder=""
 						allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
 						allowfullscreen>
 					</iframe>
 
 					<!-- video description -->
-					<Description />
+					<Description :videoInfo="video" />
 				</div>
 				<RelatedVideo />
 			</div>
@@ -24,13 +24,34 @@
 </template>
 
 <script>
-	import Description from './description/Description.vue';
-	import RelatedVideo from './videos/RelatedVideo.vue';
+	import { getSingleVideo } from '../../service/videoApi.js';
+	import Description from '../description/Description.vue';
+	import RelatedVideo from '../videos/RelatedVideo.vue';
 	export default {
-		name: 'Player',
+		name: 'Video Player',
 		components: {
 			RelatedVideo,
 			Description
+		},
+
+		data() {
+			return {
+				video: {}
+			};
+		},
+		mounted() {
+			this.singleVideo(this.$route.params.id);
+		},
+		methods: {
+			async singleVideo(id) {
+				try {
+					this.video = {};
+					this.video = await getSingleVideo(id);
+				} catch (e) {
+					this.video = {};
+					return e;
+				}
+			}
 		}
 	};
 </script>

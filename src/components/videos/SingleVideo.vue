@@ -1,6 +1,6 @@
 <template>
 	<div class="col-span-12 sm:col-span-6 md:col-span-3 duration-300 hover:scale-[1.03]">
-		<div class="w-full flex flex-col" @click="compNameHandler('player')">
+		<router-link class="w-full flex flex-col" :to="{ name: 'video-player', params: { id: videoInfo.id } }">
 			<div class="relative">
 				<a>
 					<img :src="videoInfo.thumbnail" class="w-full h-auto" alt="Some video title" />
@@ -26,7 +26,7 @@
 					</p>
 				</div>
 			</div>
-		</div>
+		</router-link>
 	</div>
 </template>
 

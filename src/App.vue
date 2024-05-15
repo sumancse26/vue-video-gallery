@@ -1,13 +1,14 @@
 <template>
-	<VideoPlayer />
+	<HomePage />
 </template>
 
 <script>
-	import VideoPlayer from './pages/VideoPlayer.vue';
+	import HomePage from './pages/HomePage.vue';
+
 	export default {
 		name: 'App Component',
 		components: {
-			VideoPlayer
+			HomePage
 		}
 	};
 </script>

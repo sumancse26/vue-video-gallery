@@ -10,7 +10,6 @@ export const getVideos = async (search, tags) => {
         ).join('&');
     }
     
-    console.log('search', search)
     if(search !== ''){
         queryString += `&q=${search.toLowerCase()}`;
     }
@@ -22,5 +21,11 @@ export const getVideos = async (search, tags) => {
 export const getTags = async () => {
     const res = await axios.get(`https://json-server-sigma-eight.vercel.app/api/tags`);
 
+    return res.data;
+}
+
+//get single video
+export const getSingleVideo = async (id) => {
+    const res = await axios.get(`https://json-server-sigma-eight.vercel.app/api/videos/${id}`);
     return res.data;
 }
