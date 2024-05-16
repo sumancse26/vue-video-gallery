@@ -27,12 +27,12 @@
 </template>
 
 <script>
+	import { mapActions } from 'pinia';
+	import { videoStore } from '../../store/videoStore.js';
 	export default {
 		name: 'Navbar',
 		props: {
-			addBtnHandler: Function,
-			backToHome: Function,
-			getSearchKey: Function
+			addBtnHandler: Function
 		},
 		data() {
 			return {
@@ -41,8 +41,9 @@
 		},
 
 		methods: {
+			...mapActions(videoStore, ['getVideoList']),
 			searchHandler() {
-				this.getSearchKey(this.searchKey);
+				this.getVideoList(this.searchKey, []);
 			}
 		}
 	};

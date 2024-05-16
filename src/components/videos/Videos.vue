@@ -2,7 +2,7 @@
 	<section class="pt-6 pb-20 min-h-[calc(100vh_-_157px)]">
 		<div class="grid grid-cols-12 gap-4 max-w-7xl mx-auto px-5 lg:px-0 min-h-[300px]">
 			<SingleVideo
-				v-for="videoItem in videos"
+				v-for="videoItem in videoList"
 				:key="videoItem.id"
 				:compNameHandler="getCompName"
 				:video="videoItem" />
@@ -11,9 +11,11 @@
 </template>
 
 <script>
-	import { getVideos } from '../../service/videoApi.js';
+	import { mapActions, mapState } from 'pinia';
+	import { defineComponent } from 'vue';
+	import { videoStore } from '../../store/videoStore.js';
 	import SingleVideo from './SingleVideo.vue';
-	export default {
+	export default defineComponent({
 		name: 'Video Component',
 		components: {
 			SingleVideo
@@ -25,19 +27,17 @@
 				search: ''
 			};
 		},
-		mounted() {
-			this.getVideoList();
+		async mounted() {
+			await this.getVideoList();
 		},
 		methods: {
-			async getVideoList() {
-				try {
-					const res = await getVideos(this.search, this.tags);
-					this.videos = res;
-				} catch (e) {
-					this.videos = [];
-					return e;
-				}
-			}
+			...mapActions(videoStore, ['getVideoList'])
+		},
+
+		computed: {
+			...mapState(videoStore, {
+				videoList: (state) => state.videos
+			})
 		}
-	};
+	});
 </script>

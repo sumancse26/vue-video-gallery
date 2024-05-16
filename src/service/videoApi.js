@@ -1,8 +1,9 @@
 import axios from 'axios';
 
 //get video list
-export const getVideos = async (search, tags) => {
+export const getVideos = async ({search, tags}) => {
     let queryString = "";
+    console.log(search)
     if(tags && tags?.length > 0){
         
         queryString += await tags.map(tag => 

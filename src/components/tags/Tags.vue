@@ -14,12 +14,11 @@
 </template>
 
 <script>
+	import { mapActions } from 'pinia';
 	import { getTags } from '../../service/videoApi.js';
+	import { videoStore } from '../../store/videoStore.js';
 	export default {
 		name: 'Tags',
-		props: {
-			getCheckedTag: Function
-		},
 		data() {
 			return {
 				tags: [],
@@ -32,6 +31,7 @@
 		},
 
 		methods: {
+			...mapActions(videoStore, ['getVideoList']),
 			async tagList() {
 				try {
 					const res = await getTags();
@@ -49,7 +49,7 @@
 					this.checkedTags = this.checkedTags?.filter((item) => item.id != tag.id);
 				}
 
-				this.getCheckedTag(this.checkedTags);
+				this.getVideoList('', this.checkedTags);
 			}
 		}
 	};
