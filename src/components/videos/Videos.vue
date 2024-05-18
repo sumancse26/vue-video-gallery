@@ -28,7 +28,7 @@
 			};
 		},
 		async mounted() {
-			await this.getVideoList();
+			await this.getVideoList('', 'initial');
 		},
 		methods: {
 			...mapActions(videoStore, ['getVideoList'])

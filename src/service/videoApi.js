@@ -30,3 +30,8 @@ export const getSingleVideo = async (id) => {
     const res = await axios.get(`https://json-server-sigma-eight.vercel.app/api/videos/${id}`);
     return res.data;
 }
+//create video
+export const createVideo = async (data) => {
+    const res = await axios.post(`https://json-server-sigma-eight.vercel.app/api/videos`, data);
+    return res.data;
+}

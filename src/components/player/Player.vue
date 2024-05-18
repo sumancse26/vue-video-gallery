@@ -17,14 +17,16 @@
 					<!-- video description -->
 					<Description :videoInfo="video" />
 				</div>
-				<RelatedVideo />
+				<RelatedVideo :relatedVideoItem="getRelVideo" />
 			</div>
 		</div>
 	</section>
 </template>
 
 <script>
+	import { mapActions } from 'pinia';
 	import { getSingleVideo } from '../../service/videoApi.js';
+	import { videoStore } from '../../store/videoStore';
 	import Description from '../description/Description.vue';
 	import RelatedVideo from '../videos/RelatedVideo.vue';
 	export default {
@@ -39,10 +41,20 @@
 				video: {}
 			};
 		},
-		mounted() {
-			this.singleVideo(this.$route.params.id);
+		async created() {
+			await this.singleVideo(this.$route.params.id);
+		},
+		async updated() {
+			const tagList = this.video.tags?.map((tag, id) => {
+				return {
+					id: id + 1,
+					title: tag
+				};
+			});
+			await this.getVideoList(tagList, 'tags');
 		},
 		methods: {
+			...mapActions(videoStore, ['getVideoList']),
 			async singleVideo(id) {
 				try {
 					this.video = {};
@@ -51,6 +63,9 @@
 					this.video = {};
 					return e;
 				}
+			},
+			getRelVideo(item) {
+				this.singleVideo(item.id);
 			}
 		}
 	};

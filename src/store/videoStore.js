@@ -8,13 +8,25 @@ export const videoStore = defineStore('videoGallery', {
     }),
 
     actions: {
-        async getVideoList(search='', tags=[]) {
+        async getVideoList(data, type) {
+            console.log('data',data)
             try {
-                this.search = search,
-                this.tags = tags
+                if(type === 'search'){
+
+                    this.search = data;
+                }
+                else if(type === 'tags'){
+
+                    this.tags = data;
+                }else{
+                    this.search = ''; 
+                    this.tags = []; 
+                }
+
                 const params = {
                     search: this.search,
-                    tags: this.tags
+                    tags: this.tags,
+                    
                 }
                 const res = await getVideos(params);
                 this.videos =  res;
@@ -25,3 +37,4 @@ export const videoStore = defineStore('videoGallery', {
         }
     },
 })
+ 

@@ -16,11 +16,11 @@
 						@change.enter="searchHandler" />
 					<img className="inline h-4 cursor-pointer" src="../../assets/search.svg" alt="Search" />
 				</div>
-				<a
-					class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-0 focus:ring-offset-0 focus:ring-indigo-500 hover:cursor-pointer"
-					@click="addBtnHandler('addVideo')">
+				<router-link
+					to="add-video"
+					class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-0 focus:ring-offset-0 focus:ring-indigo-500 hover:cursor-pointer">
 					+ Add Video
-				</a>
+				</router-link>
 			</div>
 		</div>
 	</nav>
@@ -31,9 +31,6 @@
 	import { videoStore } from '../../store/videoStore.js';
 	export default {
 		name: 'Navbar',
-		props: {
-			addBtnHandler: Function
-		},
 		data() {
 			return {
 				searchKey: ''
@@ -43,7 +40,7 @@
 		methods: {
 			...mapActions(videoStore, ['getVideoList']),
 			searchHandler() {
-				this.getVideoList(this.searchKey, []);
+				this.getVideoList(this.searchKey, 'search');
 			}
 		}
 	};

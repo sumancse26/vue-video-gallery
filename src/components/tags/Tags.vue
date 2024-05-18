@@ -49,7 +49,7 @@
 					this.checkedTags = this.checkedTags?.filter((item) => item.id != tag.id);
 				}
 
-				this.getVideoList('', this.checkedTags);
+				this.getVideoList(this.checkedTags, 'tags');
 			}
 		}
 	};

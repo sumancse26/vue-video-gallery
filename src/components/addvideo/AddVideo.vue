@@ -4,107 +4,111 @@
 			<div class="w-full">
 				<div class="px-4 sm:px-0 pb-4">
 					<h3 class="text-lg font-medium leading-6 text-gray-900">Add new video</h3>
-					<p class="mt-1 text-sm text-gray-600">Please fillup the form to add new video</p>
+					<p class="mt-1 text-sm text-gray-600">Please fill up the form to add new video</p>
 				</div>
 				<div class="mt-5 md:mt-0 md:col-span-2">
-					<form action="#" method="POST">
+					<form @submit="formHandler">
 						<div class="shadow overflow-hidden sm:rounded-md">
 							<div class="px-4 py-5 bg-white sm:p-6">
 								<div class="grid grid-cols-6 gap-6">
 									<div class="col-span-6 sm:col-span-3">
-										<label for="first-name" class="block text-sm font-medium text-gray-700"
-											>Title</label
-										>
+										<label for="title" class="block text-sm font-medium text-gray-700">Title</label>
 										<input
+											v-model.trim="videoInfo.title"
 											type="text"
-											name="first-name"
-											id="first-name"
-											autocomplete="given-name"
-											class="mt-1 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border border-gray-300 rounded-md" />
+											name="title"
+											id="title"
+											autocomplete="title"
+											class="mt-1 shadow-sm outline-none px-1 focus:ring-cyan-500 focus:border-2 focus:border-cyan-500 w-full sm:text-sm border border-gray-300 rounded-md h-[35px]" />
 									</div>
 
 									<div class="col-span-6 sm:col-span-3">
-										<label for="last-name" class="block text-sm font-medium text-gray-700"
+										<label for="author" class="block text-sm font-medium text-gray-700"
 											>Author</label
 										>
 										<input
+											v-model.trim="videoInfo.author"
 											type="text"
-											name="last-name"
-											id="last-name"
+											name="author"
+											id="author"
 											autocomplete="family-name"
-											class="mt-1 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border border-gray-300 rounded-md" />
+											class="mt-1 shadow-sm outline-none px-1 focus:ring-cyan-500 focus:border-2 focus:border-cyan-500 block w-full sm:text-sm border border-gray-300 rounded-md h-[35px]" />
 									</div>
 
 									<div class="col-span-6">
-										<label for="about" class="block text-sm font-medium text-gray-700">
+										<label for="description" class="block text-sm font-medium text-gray-700">
 											Description
 										</label>
 										<div class="mt-1">
 											<textarea
-												id="about"
-												name="about"
+												v-model.trim="videoInfo.description"
+												id="description"
+												name="description"
 												rows="3"
-												class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"></textarea>
+												class="shadow-sm outline-none p-1 focus:ring-cyan-500 focus:border-2 focus:border-cyan-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"></textarea>
 										</div>
 										<p class="mt-2 text-sm text-gray-500">Brief description for your video</p>
 									</div>
 
 									<div class="col-span-6">
-										<label for="email-address" class="block text-sm font-medium text-gray-700"
+										<label for="video-link" class="block text-sm font-medium text-gray-700"
 											>YouTube Video Link</label
 										>
 										<input
+											v-model.trim="videoInfo.link"
 											type="text"
-											name="email-address"
-											id="email-address"
+											name="video-link"
+											id="video-link"
 											autocomplete="email"
-											class="mt-1 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border border-gray-300 rounded-md" />
+											class="mt-1 shadow-sm outline-none px-1 focus:ring-cyan-500 focus:border-2 focus:border-cyan-500 block w-full sm:text-sm border border-gray-300 rounded-md h-[35px]" />
 									</div>
 
 									<div class="col-span-6">
-										<label for="street-address" class="block text-sm font-medium text-gray-700"
+										<label for="thumbnail-link" class="block text-sm font-medium text-gray-700"
 											>Thumbnail link</label
 										>
 										<input
+											v-model.trim="videoInfo.thumbnail"
 											type="text"
-											name="street-address"
-											id="street-address"
-											autocomplete="street-address"
-											class="mt-1 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border border-gray-300 rounded-md" />
+											name="thumbnail-link"
+											id="thumbnail-link"
+											autocomplete="thumbnail-link"
+											class="mt-1 shadow-sm outline-none px-1 focus:ring-cyan-500 focus:border-2 focus:border-cyan-500 block w-full sm:text-sm border border-gray-300 rounded-md h-[35px]" />
 									</div>
 
 									<div class="col-span-6 sm:col-span-6 lg:col-span-2">
-										<label for="city" class="block text-sm font-medium text-gray-700">Date</label>
+										<label for="date" class="block text-sm font-medium text-gray-700">Date</label>
 										<input
+											v-model.trim="videoInfo.date"
 											type="text"
-											name="city"
-											id="city"
+											name="date"
+											id="date"
 											autocomplete="address-level2"
-											class="mt-1 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border border-gray-300 rounded-md" />
+											class="mt-1 shadow-sm outline-none px-1 focus:ring-cyan-500 focus:border-2 focus:border-cyan-500 block w-full sm:text-sm border border-gray-300 rounded-md h-[35px]" />
 									</div>
 
 									<div class="col-span-6 sm:col-span-3 lg:col-span-2">
-										<label for="region" class="block text-sm font-medium text-gray-700"
+										<label for="duration" class="block text-sm font-medium text-gray-700"
 											>Duration</label
 										>
 										<input
+											v-model.trim="videoInfo.duration"
 											type="text"
-											name="region"
-											id="region"
+											name="duration"
+											id="duration"
 											autocomplete="address-level1"
-											class="mt-1 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border border-gray-300 rounded-md" />
+											class="mt-1 shadow-sm outline-none px-1 focus:ring-cyan-500 focus:border-2 focus:border-cyan-500 block w-full sm:text-sm border border-gray-300 rounded-md h-[35px]" />
 									</div>
 
 									<div class="col-span-6 sm:col-span-3 lg:col-span-2">
-										<label for="postal-code" class="block text-sm font-medium text-gray-700"
-											>Views</label
-										>
+										<label for="views" class="block text-sm font-medium text-gray-700">Views</label>
 										<input
+											v-model.trim="videoInfo.views"
 											type="text"
-											name="postal-code"
-											id="postal-code"
-											autocomplete="postal-code"
-											class="mt-1 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border border-gray-300 rounded-md" />
+											name="views"
+											id="views"
+											autocomplete="views"
+											class="mt-1 shadow-sm outline-none px-1 focus:ring-cyan-500 focus:border-2 focus:border-cyan-500 block w-full sm:text-sm border border-gray-300 rounded-md h-[35px]" />
 									</div>
 								</div>
 							</div>
@@ -124,7 +128,30 @@
 </template>
 
 <script>
+	import { createVideo } from '../../service/videoApi.js';
 	export default {
-		name: 'Add video'
+		name: 'Add video',
+		data() {
+			return {
+				videoInfo: {
+					title: null,
+					description: null,
+					author: null,
+					avatar: null,
+					date: null,
+					duration: null,
+					views: null,
+					link: null,
+					thumbnail: null
+				}
+			};
+		},
+
+		methods: {
+			async formHandler(e) {
+				e.preventDefault();
+				await createVideo(this.videoInfo);
+			}
+		}
 	};
 </script>
